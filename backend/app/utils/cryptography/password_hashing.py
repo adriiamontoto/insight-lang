@@ -9,13 +9,13 @@ from app.settings import settings
 
 def password_hashing(password: str) -> str:
     """
-    Hash the password of the customer.
+    Hash the password of the user.
 
     Args:
-        password (str): Password of the customer.
+        password (str): Password of the user.
 
     Returns:
-        str: Hashed password of the customer with hex encoding.
+        str: Hashed password of the user with hex encoding.
     """
     return PasswordHasher(
         time_cost=settings.HASHING_TIME_COST,

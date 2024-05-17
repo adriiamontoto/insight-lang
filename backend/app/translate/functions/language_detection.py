@@ -32,7 +32,5 @@ def language_detection(text: str) -> str:
         {text}
     """)
 
-    customer_messages = prompt_template.format_messages(text=text)
-
-    model_response = client.invoke(input=customer_messages)
+    model_response = client.invoke(input=prompt_template.format_messages(text=text))
     return model_response.content

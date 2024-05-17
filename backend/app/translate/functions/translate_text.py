@@ -33,8 +33,5 @@ def translate_text(text: str, language: str) -> str:
         Passage:
         {text}
     """)
-
-    customer_messages = prompt_template.format_messages(language=language, text=text)
-
-    model_response = client.invoke(input=customer_messages)
+    model_response = client.invoke(input=prompt_template.format_messages(language=language, text=text))
     return model_response.content
