@@ -28,6 +28,22 @@ class Settings(BaseSettings):
     AI_MODEL: str
     OPENAI_API_KEY: str
 
+    # Security Variables
+    SECRET_KEY: str
+
+    ## Password Hashing Variables
+    HASHING_TIME_COST: int
+    HASHING_MEMORY_COST: int
+    HASHING_PARALLELISM: int
+    HASHING_HASH_LENGTH: int
+
+    ## Password Requirements
+    PASSWORD_MIN_UPPERCASE_LETTERS: int
+    PASSWORD_MIN_LOWERCASE_LETTERS: int
+    PASSWORD_MIN_DIGITS: int
+    PASSWORD_MIN_SPECIAL_CHARACTERS: int
+    PASSWORD_VALID_SPECIAL_CHARACTERS: str
+
     # Database Variables
     DB_USERNAME: str
     DB_PASSWORD: str
