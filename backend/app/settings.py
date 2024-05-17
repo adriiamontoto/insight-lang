@@ -22,6 +22,10 @@ class Settings(BaseSettings):
     APP_NAME: str
     APP_VERSION: str
 
+    # Backend Variables
+    BACKEND_PORT: int
+    OPENAI_API_KEY: str
+
     # Database Variables
     DB_USERNAME: str
     DB_PASSWORD: str
