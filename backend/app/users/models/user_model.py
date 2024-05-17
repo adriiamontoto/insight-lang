@@ -1,15 +1,13 @@
 """
 User DB model.
 """
-from __future__ import annotations
-
 from datetime import datetime, timezone
 from typing import Any
 from typing_extensions import override
 
 from sqlalchemy import Column, DateTime, Index, String
 from sqlalchemy.ext.hybrid import hybrid_property
-from uuid import UUID as UUID_TYPE
+from uuid import UUID, uuid4
 
 from app.database import Base
 from app.utils.cryptography import password_checking, password_hashing
@@ -35,16 +33,15 @@ class User(Base):
 
     email_index = Index('user_email_index', __email)
 
-    def __init__(self, id: UUID_TYPE, email: str, password: str) -> None:
+    def __init__(self, email: str, password: str) -> None:
         """
         Create a new user.
 
         Args:
-            id (UUID): ID of the user.
             email (str): Email of the user.
             password (str): Unhashed password of the user.
         """
-        self.__id = id
+        self.__id = uuid4()
         self.__email = email
         self.update_password(new_password=password)
 
@@ -117,7 +114,7 @@ class User(Base):
         self.__update_update_date()
 
     @hybrid_property
-    def id(self) -> UUID_TYPE:
+    def id(self) -> UUID:
         """
         Get the ID of the user.
 
