@@ -13,7 +13,7 @@ This project is purely educational 📚 and open-source, intended to provide han
 
 ## Features
 ### Text Translation 🌐
-- [] Translate text between multiple languages.
+- [x] Translate text between multiple languages.
 - [] Support for automatic language detection.
 - [] Context-aware and industry-specific translation.
 

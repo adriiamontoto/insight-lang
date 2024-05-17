@@ -4,9 +4,11 @@ App module.
 from fastapi import FastAPI, status
 
 from app.settings import settings, Tags
+from app.translate.routes import router as translate_router
 from app.utils.models import MessageSchema
 
 app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
+app.include_router(router=translate_router, prefix='/translate', tags=[Tags.TRANSLATE])
 
 
 @app.get(path='/',
