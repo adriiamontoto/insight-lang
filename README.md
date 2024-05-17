@@ -14,7 +14,7 @@ This project is purely educational 📚 and open-source, intended to provide han
 ## Features
 ### Text Translation 🌐
 - [x] Translate text between multiple languages.
-- [] Support for automatic language detection.
+- [x] Support for automatic language detection.
 - [] Context-aware and industry-specific translation.
 
 ### Emotion Detection 😊😢😡
