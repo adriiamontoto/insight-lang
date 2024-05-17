@@ -1,5 +1,5 @@
 """
-This module contains the function to translate text to the specified language.
+This module contains the function to detect the language of the provided text.
 """
 from langchain.prompts import ChatPromptTemplate
 from langchain.pydantic_v1 import SecretStr
@@ -18,7 +18,7 @@ def language_detection(text: str) -> str:
     Returns:
         str: Detected language of the text.
     """
-    client = ChatOpenAI(api_key=SecretStr(value=settings.OPENAI_API_KEY), model='gpt-3.5-turbo')
+    client = ChatOpenAI(api_key=SecretStr(value=settings.OPENAI_API_KEY), model=settings.AI_MODEL)
 
     prompt_template = ChatPromptTemplate.from_template(template="""
         Detect the language of the provided passage. The language name should be returned in English and in lowercase.

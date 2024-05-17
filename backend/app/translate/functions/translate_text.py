@@ -19,7 +19,7 @@ def translate_text(text: str, language: str) -> str:
     Returns:
         str: Translated text.
     """
-    client = ChatOpenAI(api_key=SecretStr(value=settings.OPENAI_API_KEY), model='gpt-3.5-turbo')
+    client = ChatOpenAI(api_key=SecretStr(value=settings.OPENAI_API_KEY), model=settings.AI_MODEL)
 
     prompt_template = ChatPromptTemplate.from_template(template="""
         Translate the provided passage to {language}.

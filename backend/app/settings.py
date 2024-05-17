@@ -24,6 +24,7 @@ class Settings(BaseSettings):
 
     # Backend Variables
     BACKEND_PORT: int
+    AI_MODEL: str
     OPENAI_API_KEY: str
 
     # Database Variables
