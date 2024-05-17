@@ -1,0 +1,13 @@
+services:
+  database:
+    container_name: insight_lang_database
+    image: mariadb:${DB_VERSION:-latest}
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - ${DB_PORT:-3306}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - ./___data:/var/lib/mysql
