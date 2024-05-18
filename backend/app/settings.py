@@ -13,6 +13,7 @@ load_dotenv(override=True)
 class Tags(StrEnum):
     GENERAL = 'General'
     AUTH = 'Auth'
+    USER = 'User'
     TRANSLATE = 'Translate'
 
 
