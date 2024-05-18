@@ -20,4 +20,4 @@ class ShowUser(BaseModel):
                                   description='User last update date',
                                   examples=[datetime.now(tz=timezone.utc)])
 
-    model_config = ConfigDict(extra='forbid')
+    model_config = ConfigDict(extra='ignore')
