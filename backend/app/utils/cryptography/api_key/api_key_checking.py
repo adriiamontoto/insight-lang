@@ -43,6 +43,9 @@ def get_current_user(api_key: str) -> User:
             raise InvalidCredentialsException(message='This API key does not exist.')
 
         result.update_last_utilization_date()
+        session.add(instance=result)
+        session.commit()
+
         return result.user
 
 
