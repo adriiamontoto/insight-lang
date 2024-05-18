@@ -29,7 +29,7 @@ class ApiKey(Base):
     __name = Column('name', String(length=64), nullable=False)
 
     # Secret key
-    __secret_key = Column('secret_key', String(length=256), nullable=False)
+    __secret_key = Column('secret_key', String(length=256), nullable=False, index=True)
 
     # Public key
     __public_key = Column('public_key', String(length=13), nullable=False)
@@ -45,6 +45,7 @@ class ApiKey(Base):
     __last_utilization_date = Column('last_utilization_date', DateTime, nullable=True)
 
     # Indexes
+    __secret_key_index = Index('api_key_secret_key_index', __secret_key)
     __user_index = Index('api_key_user_index', __user_id)
 
     def __init__(self, name: str, secret_key: str, user: User) -> None:

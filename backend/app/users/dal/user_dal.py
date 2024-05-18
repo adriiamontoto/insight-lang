@@ -124,6 +124,18 @@ class UserDAL():
         """
         return self.__session.query(ApiKey).filter(ApiKey.id == str(id)).first()
 
+    def get_api_key_by_secret_key(self, secret_key: str) -> ApiKey | None:
+        """
+        Get an API key by secret key.
+
+        Args:
+            secret_key (str): API key secret key.
+
+        Returns:
+            ApiKey: API key if it exists, None otherwise.
+        """
+        return self.__session.query(ApiKey).filter(ApiKey.secret_key == secret_key).first()
+
     def create_api_key(self, user: User, name: str, secret_key: str) -> ApiKey:
         """
         Create a new API key.
