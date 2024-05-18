@@ -22,6 +22,7 @@ def create_database() -> None:
     Create database tables.
     """
     # Import all database models here
+    from app.users.models import User
 
     print('Creating database tables ...')
     if database_exists(url=url):
