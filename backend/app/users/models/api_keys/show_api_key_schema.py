@@ -2,12 +2,15 @@
 Schema for showing an API key.
 """
 from pydantic import BaseModel, ConfigDict, Field
+from uuid import UUID
 
 
 class ShowApiKey(BaseModel):
     """
     Schema for showing an API key.
     """
+    id: UUID = Field(default=..., description='ID of the API key.', examples=['a3186a65-fd74-40ab-88c4-e1a91145f0fc'])
+
     name: str = Field(default=..., description='Name of the newAPI key.', examples=['Development'])
 
     secret_key: str = Field(default=...,
