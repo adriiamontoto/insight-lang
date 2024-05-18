@@ -31,7 +31,7 @@ def get_current_user(token: str) -> User:
         InvalidCredentialsException: If the user is not found.
 
     Returns:
-        User | Employee: The user that is logged in.
+        User: The user that is logged in.
     """
     from app.users.dal import UserDAL
 
