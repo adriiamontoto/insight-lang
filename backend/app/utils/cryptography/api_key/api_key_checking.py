@@ -9,8 +9,9 @@ from fastapi import Depends
 from fastapi.security import APIKeyHeader
 
 from app.database import session_maker
-from app.utils.cryptography import api_key_hashing
 from app.utils.exceptions import InvalidCredentialsException
+
+from .api_key_hashing import api_key_hashing
 
 if TYPE_CHECKING:
     from app.users.models import User
