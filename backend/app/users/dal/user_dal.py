@@ -4,7 +4,7 @@ User Data Access Layer
 from sqlalchemy.orm import Session
 from uuid import UUID
 
-from app.users.models import User
+from app.users.models import ApiKey, User
 from app.utils.exceptions import ValidationException
 
 
@@ -110,4 +110,68 @@ class UserDAL():
             user (User): User to delete.
         """
         self.__session.delete(instance=user)
+        self.__session.commit()
+
+    def get_api_key_by_id(self, id: UUID) -> ApiKey | None:
+        """
+        Get an API key by ID.
+
+        Args:
+            id (UUID): API key ID.
+
+        Returns:
+            User: API key if it exists, None otherwise.
+        """
+        return self.__session.query(ApiKey).filter(ApiKey.id == str(id)).first()
+
+    def create_api_key(self, user: User, name: str, secret_key: str) -> ApiKey:
+        """
+        Create a new API key.
+
+        Args:
+            user (User): User who owns the API key.
+            name (str): API key name.
+            secret_key (str): API key secret key.
+
+        Returns:
+            ApiKey: Created API key.
+        """
+        api_key = ApiKey(user=user, name=name, secret_key=secret_key)
+
+        self.__session.add(instance=api_key)
+        self.__session.commit()
+
+        return api_key
+
+    def update_api_key(self, api_key: ApiKey, name: str | None = None) -> ApiKey:
+        """
+        Update an API key.
+
+        Args:
+            api_key (ApiKey): API key to update.
+            name (str | None, optional): New name. Defaults to None.
+
+        Returns:
+            ApiKey: Updated API key.
+        """
+        api_key_hash = hash(api_key)
+
+        if name is not None:
+            if name != api_key.name:
+                api_key.name = name
+
+        if api_key_hash != hash(api_key):
+            self.__session.add(instance=api_key)
+            self.__session.commit()
+
+        return api_key
+
+    def delete_api_key(self, api_key: ApiKey) -> None:
+        """
+        Delete an API key.
+
+        Args:
+            api_key (ApiKey): API key to delete.
+        """
+        self.__session.delete(instance=api_key)
         self.__session.commit()
