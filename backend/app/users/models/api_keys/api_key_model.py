@@ -36,7 +36,7 @@ class ApiKey(Base):
 
     # Owner of the API key
     __user_id = Column('user_id', String(length=36), ForeignKey('User.id'), nullable=False)
-    __user = relationship('User', back_populates='api_keys', lazy='joined')
+    __user = relationship('User', back_populates='_User__api_keys', lazy='joined')
 
     # API key creation date
     __creation_date = Column('creation_date', DateTime, nullable=False)

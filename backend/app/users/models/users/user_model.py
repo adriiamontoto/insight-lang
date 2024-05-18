@@ -34,7 +34,7 @@ class User(Base):
     __update_date = Column('update_date', DateTime, nullable=False)
 
     # User API keys
-    __api_keys = relationship('ApiKey', back_populates='user', lazy='joined')
+    __api_keys = relationship('ApiKey', back_populates='_ApiKey__user', lazy='joined', cascade='all, delete-orphan')
 
     # Indexes
     email_index = Index('user_email_index', __email)
