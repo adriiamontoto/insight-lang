@@ -12,6 +12,7 @@ load_dotenv(override=True)
 @unique
 class Tags(StrEnum):
     GENERAL = 'General'
+    AUTH = 'Auth'
     TRANSLATE = 'Translate'
 
 
