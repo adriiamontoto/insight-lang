@@ -13,3 +13,4 @@ langchain-openai==0.1.7  # https://python.langchain.com/v0.1/docs/integrations/t
 langcodes==3.4.0  # https://github.com/rspeer/langcodes
 argon2-cffi==23.1.0  # https://argon2-cffi.readthedocs.io/en/stable/
 cryptography==42.0.7  # https://cryptography.io/en/latest/
+python-jose[cryptography]==3.3.0  # https://python-jose.readthedocs.io/en/latest/
