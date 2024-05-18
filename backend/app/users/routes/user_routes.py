@@ -227,6 +227,80 @@ async def delete_user(user: User = Depends(dependency=check_user_logged_in)) -> 
 
 
 @router.get(
+    path='/api-keys',
+    summary='Get all API keys for the current user.',
+    description='Get all API keys for the current user.',
+    responses={
+        status.HTTP_200_OK: {
+            'model': list[ShowApiKey],
+            'content': {
+                'application/json': {
+                    'example': [
+                        {
+                            'id': 'a3186a65-fd74-40ab-88c4-e1a91145f0fc',
+                            'name': 'Development',
+                            'secret_key': '8873344efbff3fa9a8ca3dd0b742797b0018ce3cb1d6c23b0c424060f68f6e30'
+                        },
+                        {
+                            'id': '3fa164e4-220d-4b10-99ba-738e38ab9077',
+                            'name': 'Production',
+                            'secret_key': '0fe5a1da2d7ba1df82ae33e95e30e75e81bd66ea65dad9d02abe8c8d90f0310f'
+                        },
+                    ]
+                }
+            }
+        },
+        status.HTTP_401_UNAUTHORIZED: {
+            'model': ErrorSchema,
+            'content': {
+                'application/json': {
+                    'example': {
+                        'message': 'Invalid credentials. Please try again.',
+                        'error': 'Unauthorized'
+                    }
+                }
+            }
+        },
+        status.HTTP_422_UNPROCESSABLE_ENTITY: {
+            'model': ErrorSchema,
+            'content': {
+                'application/json': {
+                    'example': {
+                        'message':
+                            'The server could not understand the request. Please check if it is correctly formatted.',
+                        'error':
+                            'Validation Error'
+                    }
+                }
+            }
+        }
+    })
+async def get_api_keys(user: User = Depends(dependency=check_user_logged_in)) -> list[ShowApiKey]:
+    """
+    Get all API keys for the current user.
+
+    Args:
+        user (User): Current logged in user.
+
+    Raises:
+        InvalidCredentialsException: If user is not logged in.
+
+    Returns:
+        list[ShowApiKey]: All API keys of the user.
+    """
+    with session_maker() as session:
+        session.add(instance=user)
+
+        return_value = []
+        for api_key in user.api_keys:
+            show_api_key = ShowApiKey(**dict(api_key))
+            show_api_key.secret_key = api_key.public_key
+            return_value.append(show_api_key)
+
+        return return_value
+
+
+@router.get(
     path='/api-key/{api_key_id}',
     summary='Get an API key for the current user.',
     description='Get an API key for the current user.',
