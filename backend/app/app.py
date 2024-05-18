@@ -29,3 +29,6 @@ async def welcome() -> MessageSchema:
         MessageSchema: Welcome message.
     """
     return MessageSchema(message=f'Welcome to {settings.APP_NAME} API. For more information please refer to /docs')
+
+
+from app.errors import *  # noqa
