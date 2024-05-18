@@ -9,7 +9,6 @@ from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 
 from app.database import session_maker
-from app.users.dal import UserDAL
 from app.utils.cryptography import check_token
 from app.utils.exceptions import InvalidCredentialsException, UserCannotBeLoggedInException
 
@@ -34,6 +33,8 @@ def get_current_user(token: str) -> User:
     Returns:
         User | Employee: The user that is logged in.
     """
+    from app.users.dal import UserDAL
+
     data = check_token(token=token)
 
     with session_maker() as session:
