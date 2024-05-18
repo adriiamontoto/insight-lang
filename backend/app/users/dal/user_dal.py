@@ -95,9 +95,9 @@ class UserDAL():
 
         if password is not None:
             user.update_password(new_password=password)
-            self.__session.add(instance=user)
 
         if user_hash != hash(user):
+            self.__session.add(instance=user)
             self.__session.commit()
 
         return user
