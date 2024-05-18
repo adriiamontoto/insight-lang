@@ -91,7 +91,7 @@ def check_token(token: str) -> TokenDataSchema:
         raise InvalidCredentialsException(message=f'Invalid token: {exception}.'.replace('..', '.'))
 
     return TokenDataSchema(issuer=token_decoded['iss'],
-                           user_id=UUID(bytes=token_decoded['sub']),
+                           user_id=UUID(hex=token_decoded['sub']),
                            audience=token_decoded['aud'],
                            creation_datetime=token_decoded['iat'],
                            expiration_datetime=token_decoded['exp'])
