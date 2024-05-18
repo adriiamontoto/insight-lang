@@ -31,6 +31,9 @@ class ApiKey(Base):
     # Secret key
     __secret_key = Column('secret_key', String(length=256), nullable=False)
 
+    # Public key
+    __public_key = Column('public_key', String(length=13), nullable=False)
+
     # Owner of the API key
     __user_id = Column('user_id', String(length=36), ForeignKey('User.id'), nullable=False)
     __user = relationship('User', back_populates='api_keys', lazy='joined')
@@ -56,6 +59,7 @@ class ApiKey(Base):
         self.__id = uuid4()
         self.__name = name
         self.__secret_key = password_hashing(password=secret_key)
+        self.__public_key = f'{secret_key[:5]}...{secret_key[-5:]}'
         self.__user = user
 
         self.__creation_date = datetime.now(tz=timezone.utc)
@@ -95,6 +99,7 @@ class ApiKey(Base):
         yield 'id', str(self.__id),
         yield 'name', self.__name,
         yield 'secret_key', self.__secret_key,
+        yield 'public_key', self.__public_key,
         yield 'user', str(self.__user.id),
         yield 'creation_date', self.__creation_date,
         yield 'last_utilization_date', self.__last_utilization_date
@@ -162,6 +167,20 @@ class ApiKey(Base):
     @secret_key.setter
     def secret_key(self, value: Any) -> None:
         raise AttributeError('ApiKey secret key cannot be updated.')
+
+    @hybrid_property
+    def public_key(self) -> str:
+        """
+        Get the public key of the api key.
+
+        Returns:
+            str: Public key of the api key.
+        """
+        return self.__public_key
+
+    @public_key.setter
+    def public_key(self, value: Any) -> None:
+        raise AttributeError('ApiKey public key is a read-only attribute.')
 
     @hybrid_property
     def user(self) -> User:
