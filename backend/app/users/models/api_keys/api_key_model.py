@@ -13,7 +13,7 @@ from sqlalchemy.orm import relationship
 from uuid import UUID, uuid4
 
 from app.database import Base
-from app.utils.cryptography import password_checking, password_hashing
+from app.utils.cryptography import api_key_hashing
 
 if TYPE_CHECKING:
     from app.users.models import User
@@ -59,7 +59,7 @@ class ApiKey(Base):
         """
         self.__id = uuid4()
         self.__name = name
-        self.__secret_key = password_hashing(password=secret_key)
+        self.__secret_key = api_key_hashing(api_key=secret_key)
         self.__public_key = f'{secret_key[:5]}...{secret_key[-5:]}'
         self.__user = user
 
@@ -111,22 +111,6 @@ class ApiKey(Base):
         """
         self.__last_utilization_date = datetime.now(tz=timezone.utc)
 
-    def check_secret_key(self, secret_key: str) -> bool:
-        """
-        Check if the secret key is correct. If it is correct, update the last utilization date.
-
-        Args:
-            secret_key (str): Secret key to check.
-
-        Returns:
-            True if the secret key is correct, False otherwise.
-        """
-        access = password_checking(password=secret_key, hashed_password=self.__secret_key)
-        if access:
-            self.__update_last_utilization_date()
-
-        return access
-
     @hybrid_property
     def id(self) -> UUID:
         """
@@ -163,7 +147,7 @@ class ApiKey(Base):
 
     @hybrid_property
     def secret_key(self) -> str:
-        raise AttributeError('ApiKey secret key cannot be accessed directly. You can use check_secret_key method.')
+        raise AttributeError('ApiKey secret key cannot be accessed.')
 
     @secret_key.setter
     def secret_key(self, value: Any) -> None:
