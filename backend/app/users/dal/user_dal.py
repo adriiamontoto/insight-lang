@@ -30,7 +30,7 @@ class UserDAL():
         Returns:
             User: User if it exists, None otherwise.
         """
-        return self.__session.query(User).filter(User.id == id).first()
+        return self.__session.query(User).filter(User.id == str(id)).first()
 
     def get_user_by_email(self, email: str) -> User | None:
         """
