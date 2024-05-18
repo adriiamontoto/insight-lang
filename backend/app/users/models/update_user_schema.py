@@ -27,7 +27,7 @@ class UpdateUser(BaseModel):
 
     password: str | None = Field(
         default=None,
-        min_length=8,
+        min_length=1,
         max_length=64,
         description=
         'Unhashed user password. If provided the old_password and password_verification must also be provided.',
@@ -35,7 +35,7 @@ class UpdateUser(BaseModel):
 
     password_verification: str | None = Field(
         default=None,
-        min_length=8,
+        min_length=1,
         max_length=64,
         description=
         'Unhashed user password verification. If provided the old_password and new password must also be provided.',
