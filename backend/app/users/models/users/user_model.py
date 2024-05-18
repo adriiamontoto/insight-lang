@@ -7,9 +7,11 @@ from typing_extensions import override
 
 from sqlalchemy import Column, DateTime, Index, String
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import relationship
 from uuid import UUID, uuid4
 
 from app.database import Base
+from app.users.models.api_keys import ApiKey
 from app.utils.cryptography import password_checking, password_hashing
 
 
@@ -31,6 +33,10 @@ class User(Base):
     # User last update date
     __update_date = Column('update_date', DateTime, nullable=False)
 
+    # User API keys
+    __api_keys = relationship('ApiKey', back_populates='user', lazy='joined')
+
+    # Indexes
     email_index = Index('user_email_index', __email)
 
     def __init__(self, email: str, password: str) -> None:
@@ -84,6 +90,7 @@ class User(Base):
         yield 'password', self.__password,  # Hashed password!
         yield 'creation_date', self.__creation_date,
         yield 'update_date', self.__update_date,
+        yield 'api_keys', [str(api_key.id) for api_key in self.__api_keys]
 
     def __update_update_date(self) -> None:
         """
@@ -183,3 +190,17 @@ class User(Base):
     @update_date.setter
     def update_date(self, value: Any) -> None:
         raise AttributeError('User update date is a read-only attribute.')
+
+    @hybrid_property
+    def api_keys(self) -> list[ApiKey]:
+        """
+        Get the API keys of the user.
+
+        Returns:
+            list[ApiKey]: API keys of the user.
+        """
+        return self.__api_keys
+
+    @api_keys.setter
+    def api_keys(self, value: Any) -> None:
+        raise AttributeError('User API keys are read-only attribute.')
