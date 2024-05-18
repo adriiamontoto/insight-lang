@@ -23,7 +23,7 @@ def password_hashing(password: str) -> str:
         parallelism=settings.HASHING_PARALLELISM,
         hash_len=settings.HASHING_HASH_LENGTH,
         type=Type.ID,
-    ).hash(password=bytes(password, 'utf-8'))
+    ).hash(password=bytes(password, 'utf-8'), salt=bytes(settings.SECRET_KEY, 'utf-8'))
 
 
 def password_checking(password: str, hashed_password: str) -> bool:
