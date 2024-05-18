@@ -4,12 +4,12 @@ Secret key utilities module.
 from secrets import token_hex
 
 
-def generate_secret_key(length: int = 64) -> str:
+def generate_secret_key(length: int = 32) -> str:
     """
     Generate a secret key.
 
     Args:
-        length (int): Length of the secret key.
+        length (int, optional): Length of the secret key. Defaults to 32.
 
     Returns:
         str: Secret key.
