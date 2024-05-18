@@ -147,7 +147,13 @@ class ApiKey(Base):
 
     @hybrid_property
     def secret_key(self) -> str:
-        raise AttributeError('ApiKey secret key cannot be accessed.')
+        """
+        Get the hashed secret key of the api key.
+
+        Returns:
+            str: Hashed secret key of the api key.
+        """
+        return self.__secret_key
 
     @secret_key.setter
     def secret_key(self, value: Any) -> None:
