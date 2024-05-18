@@ -14,7 +14,7 @@ class TokenDataSchema(BaseModel):
     iss: str = Field(default=...,
                      alias='issuer',
                      description='Issuer, the entity that issued the token.',
-                     examples=['ecommerce'])
+                     examples=['insight-lang'])
 
     sub: UUID = Field(default=...,
                       alias='user_id',
