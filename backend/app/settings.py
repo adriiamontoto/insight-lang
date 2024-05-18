@@ -30,6 +30,7 @@ class Settings(BaseSettings):
 
     # Security Variables
     SECRET_KEY: str
+    ACCESS_TOKEN_EXPIRATION_DELTA: int  # in minutes
 
     ## Password Hashing Variables
     HASHING_TIME_COST: int
