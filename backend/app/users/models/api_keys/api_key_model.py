@@ -105,7 +105,7 @@ class ApiKey(Base):
         yield 'creation_date', self.__creation_date,
         yield 'last_utilization_date', self.__last_utilization_date
 
-    def __update_last_utilization_date(self) -> None:
+    def update_last_utilization_date(self) -> None:
         """
         Update the last utilization date of the api key.
         """
