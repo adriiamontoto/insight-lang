@@ -384,7 +384,7 @@ async def get_api_key(user: User = Depends(dependency=check_user_logged_in),
     summary='Create an API key for the current user.',
     description='Create an API key for the current user.',
     responses={
-        status.HTTP_200_OK: {
+        status.HTTP_201_CREATED: {
             'model': ShowApiKey,
         },
         status.HTTP_401_UNAUTHORIZED: {
