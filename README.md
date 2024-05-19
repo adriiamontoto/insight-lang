@@ -31,7 +31,7 @@ This project is purely educational 📚 and open-source, intended to provide han
 - [] Provide suggestions for spelling corrections.
 
 ### Emotion Detection 😊😢😡
-- [] Analyze text to detect a range of emotions such as joy, sadness, anger, and more.
+- [x] Analyze text to detect a range of emotions such as joy, sadness, anger, and more.
 
 ### Named Entity Recognition (NER) 🏷️
 - [] Identify and categorize entities (e.g., names, organizations, locations) within the text.

@@ -15,6 +15,7 @@ class Tags(StrEnum):
     AUTH = 'Auth'
     USER = 'User'
     TRANSLATE = 'Translate'
+    EMOTIONS = 'Emotions'
 
 
 class Settings(BaseSettings):
