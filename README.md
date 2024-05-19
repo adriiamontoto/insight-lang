@@ -4,6 +4,7 @@ Insight Lang is a Python 🐍 project aimed at exploring various technologies an
 This project is purely educational 📚 and open-source, intended to provide hands-on experience with modern technologies and best practices in software development 🚀.
 <br><br>
 
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
@@ -11,32 +12,45 @@ This project is purely educational 📚 and open-source, intended to provide han
 - [License](#license)
 <br><br>
 
+
 ## Features
 ### Text Translation 🌐
 - [x] Translate text between multiple languages.
-- [x] Support for automatic language detection.
-- [] Context-aware and industry-specific translation.
+- [x] Detect the language of the input text.
+
+### Paraphrasing 🌀
+- [] Rewrite text to have the same meaning but with different wording (e.g., more formal, technical, or casual).
+- [] Rewrite text to match a specific style or tone.
+- [] Provide multiple paraphrasing options for a single input.
+
+### Grammar and Spelling Check ✅❌
+- [] Detect and correct grammar errors in the text.
+- [] Provide suggestions for spelling corrections.
 
 ### Emotion Detection 😊😢😡
 - [] Analyze text to detect a range of emotions such as joy, sadness, anger, and more.
-- [] Provide confidence scores for each detected emotion.
-
-### Sentiment Analysis 📈📉
-- [] Determine the sentiment of the text (positive, negative, neutral).
-- [] Aspect-based sentiment analysis for more granular insights.
 
 ### Named Entity Recognition (NER) 🏷️
 - [] Identify and categorize entities (e.g., names, organizations, locations) within the text.
-- [] Support for multiple entity types and context-aware recognition.
-
-### Keyword Extraction 🔑
-- [] Extract important keywords or phrases from the text.
-- [] Customizable extraction rules and relevance scoring.
 
 ### Text Summarization 📄
 - [] Generate concise summaries from longer texts.
-- [] Options for extractive and abstractive summarization.
 - [] Customizable summary length and detail level.
+- [] Most important sentences extraction.
+
+### Document Processing 📑
+- [] Extract and process text from various document formats.
+- [] Optical Character Recognition (OCR) for processing scanned documents and images.
+
+### Speech-to-Text and Text-to-Speech 🎤🔊
+- [] Convert spoken language into written text.
+- [] Convert written text into natural-sounding speech.
+
+### Integration with multiple Large Language Models (LLMs) 🤖
+- [x] OpenAI GPT-3.5
+- [] Other OpenAI models such as GPT-4, etc.
+- [] Google Gemini
+- [] Local models such as LLaMA, etc.
 <br><br>
 
 
@@ -48,6 +62,7 @@ This project is purely educational 📚 and open-source, intended to provide han
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 <br><br>
+
 
 ## Deployment
 1. Clone the repository
@@ -73,6 +88,7 @@ docker-compose up --build -d
 curl "http://localhost"
 ```
 <br>
+
 
 ## License
 This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/).
